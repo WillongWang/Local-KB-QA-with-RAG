@@ -74,12 +74,12 @@ QA_CHAIN_PROMPT = PromptTemplate.from_template("""根据以下已知信息回答
 retriever = db.as_retriever(search_kwargs={"k": 3}) #return 3 relevant docs
 ```
 
-This file by default processes a small JD Q&A dataset [jd_faq.csv](https://github.com/WillongWang/Awesome-LLM-NLP-projects-updating-/blob/main/Local-KB-QA-with-RAG/documents/jd_faq.csv) as an experiment.  
+This file by default processes a small JD Q&A dataset [jd_faq.csv](https://github.com/WillongWang/Local-KB-QA-with-RAG/blob/main/documents/jd_faq.csv) as an experiment.  
 Each line is used to construct a langchain.schema.Document object and is then vectorized and stored. You can comment out the corresponding code snippet if needed.
 
 ### ROUGE
 
-This project uses ROUGE to evaluate the QA performance. Each record in [jd_faq.csv](https://github.com/WillongWang/Awesome-LLM-NLP-projects-updating-/blob/main/Local-KB-QA-with-RAG/documents/jd_faq.csv) contains a question and its corresponding answer. The LLM is prompted to answer each question, and the generated answer is compared with the original one to compute the ROUGE score.
+This project uses ROUGE to evaluate the QA performance. Each record in [jd_faq.csv](https://github.com/WillongWang/Local-KB-QA-with-RAG/blob/main/documents/jd_faq.csv) contains a question and its corresponding answer. The LLM is prompted to answer each question, and the generated answer is compared with the original one to compute the ROUGE score.
 
 ```
 # pip install jieba rouge_chinese
@@ -136,9 +136,9 @@ def clean_answer(text):
 
 ## Running Examples
 
-![](https://github.com/WillongWang/Awesome-LLM-NLP-projects-updating-/blob/main/Local-KB-QA-with-RAG/1.png)
+![](https://github.com/WillongWang/Local-KB-QA-with-RAG/blob/main/1.png)
 
-![](https://github.com/WillongWang/Awesome-LLM-NLP-projects-updating-/blob/main/Local-KB-QA-with-RAG/2.png)
+![](https://github.com/WillongWang/Local-KB-QA-with-RAG/blob/main/2.png)
 
 ### Bugs
 
