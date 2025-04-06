@@ -1,0 +1,20 @@
+torch==2.1.0 
+#pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+langchain==0.3.22
+langchain-community==0.3.20
+langsmith==0.3.24
+langchain_core==0.3.50
+langchain_deepseek==0.0.3
+langchain_chroma==0.2.2
+sentence-transformers==4.0.1
+chromadb==0.4.14
+nltk==3.8.1
+gradio==5.23.3
+aiofiles==23.2.1
+unstructured==0.17.2
+unstructured-client==0.27.0
+# TextLoader: 在终端执行以下命令安装NLTK资源
+# python -c "import nltk; nltk.download('punkt')"
+# python -c "import nltk; nltk.download('punkt'); nltk.download('averaged_perceptron_tagger')"
+
+
