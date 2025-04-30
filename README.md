@@ -189,13 +189,13 @@ def clean_answer(str,id,text):
 
 ##### ROUGE
 
-| Original Version | ROUGE-1 (Recall)  | ROUGE-1 (Precision) | ROUGE-1 (F1)  | ROUGE-2 (R)  | ROUGE-2 (P)  | ROUGE-2 (F)  | ROUGE-L (R)  | ROUGE-L (P)  | ROUGE-L (F)  |
+| Original Version | ROUGE-1 (Recall)   | ROUGE-1 (Precision) | ROUGE-1 (F1)   | ROUGE-2 (R)   | ROUGE-2 (P)   | ROUGE-2 (F)   | ROUGE-L (R)   | ROUGE-L (P)   | ROUGE-L (F)   |
 |------------------|------------------|---------------------|--------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | deepseek-chat    | 0.8761           | 0.8877              | 0.8689       | 0.8630      | 0.8564      | 0.8548      | 0.8699      | 0.8821      | 0.8624      |
 | glm-4-plus       | 0.8519           | 0.8747              | 0.8468       | 0.8424      | 0.8426      | 0.8350      | 0.8469      | 0.8677      | 0.8394      |
 | qwen-max         | 0.8329           | 0.8948              | 0.8354       | 0.8271      | 0.8347      | 0.8270      | 0.8308      | 0.8928      | 0.8318      |
 
-| Version (with `clean_answer()`) | ROUGE-1 (Recall)  | ROUGE-1 (Precision) | ROUGE-1 (F1)  | ROUGE-2 (R)  | ROUGE-2 (P)  | ROUGE-2 (F)  | ROUGE-L (R)  | ROUGE-L (P)  | ROUGE-L (F)  |
+| Version (with `clean_answer()`) | ROUGE-1 (Recall)   | ROUGE-1 (Precision) | ROUGE-1 (F1)   | ROUGE-2 (R)   | ROUGE-2 (P)   | ROUGE-2 (F)   | ROUGE-L (R)   | ROUGE-L (P)   | ROUGE-L (F)   |
 |---------------------------------|------------------|---------------------|--------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | deepseek-chat    | 0.8755           | 0.9028              | 0.8767       | 0.8629      | 0.8703      | 0.8633      | 0.8694      | 0.8956      | 0.8693      |
 | glm-4-plus       | 0.8518           | 0.8753              | 0.8470       | 0.8417      | 0.8432      | 0.8353      | 0.8468      | 0.8683      | 0.8396      |
