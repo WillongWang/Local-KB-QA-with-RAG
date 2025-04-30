@@ -3,12 +3,11 @@ import requests
 
 import os
 import gradio as gr
-from langchain_community.document_loaders import TextLoader,DirectoryLoader
+from langchain_community.document_loaders import TextLoader, DirectoryLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 
 import torch
@@ -107,13 +106,13 @@ def load_documents_csv(file_path="documents/jd_faq.csv"):
             documents.append(doc)    
     return documents
 
-def load_documents(directory="documents\\books"): #只上传txt文件
-    #loader = TextLoader(directory,encoding='utf-8') 老是错
+def load_documents(directory="documents/books"): #只上传txt文件
+    #loader = TextLoader(directory,encoding='utf-8') # text_spliter对其无效，documents未进行划分
     loader = DirectoryLoader(directory)
     documents = loader.load()
     text_spliter = CharacterTextSplitter(chunk_size=256, chunk_overlap=0)
     split_docs = text_spliter.split_documents(documents)
-    #print(split_docs) #
+    #print(split_docs)
     return split_docs
 
 def load_embedding_model(model_name="ernie-tiny"):
@@ -123,7 +122,7 @@ def load_embedding_model(model_name="ernie-tiny"):
     :return:
     """
     encode_kwargs = {"normalize_embeddings": False}
-    model_kwargs = {"device": "cuda:0"}
+    model_kwargs = {"device": "cpu"} # "cuda:0"
     return HuggingFaceEmbeddings(
         model_name=embedding_model_dict[model_name],
         model_kwargs=model_kwargs,
@@ -152,6 +151,7 @@ def store_chroma(split_docs):
         print(f"成功处理文件")
     except Exception as e:
         print(f"文件处理失败")
+
 #创建llm
 #from langchain_community.llms import ChatGLM
 # llm = ChatGLM(
@@ -166,6 +166,31 @@ llm=ChatDeepSeek(
     max_tokens=2000,
     api_key=""
 )
+'''
+from langchain_openai import ChatOpenAI,AzureChatOpenAI
+llm = ChatOpenAI(
+    temperature=0.75,
+    model="glm-4-plus",
+    openai_api_key="",
+    openai_api_base="https://open.bigmodel.cn/api/paas/v4/",
+    max_retries=10
+)
+import getpass
+if "AZURE_OPENAI_API_KEY" not in os.environ:
+    os.environ["AZURE_OPENAI_API_KEY"] = getpass.getpass(
+        "Enter your AzureOpenAI API key: "
+    )
+os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hkust.azure-api.net"
+llm = AzureChatOpenAI(
+    azure_deployment="gpt-35-turbo",  # or your deployment
+    api_version="2023-05-15",  # or your api version
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=10,
+    # other params...
+)
+'''
 
 # 创建qa
 QA_CHAIN_PROMPT = PromptTemplate.from_template("""根据以下已知信息回答问题：
@@ -207,7 +232,10 @@ def add_message(history, message):
     if message["files"] is not None:
         for x in message["files"]:
             print("..."+x) #
+            # windows:
             parent = x.rsplit('\\', 1)[0] #只支持文件下的文档上传，且会把该文件下的全向量化
+            # macos:
+            parent = x.rsplit('/', 1)[0]
             documents = load_documents(parent)
             store_chroma(documents)
             history.append({"role": "user", "content": {"path": x}})
