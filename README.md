@@ -6,7 +6,7 @@ The project follows the fundamental RAG pipeline, which involves several key ste
 
 ## Chinese LLMs
 
-1.CHATGLM
+1. CHATGLM
 
 1) Deploy locally
 
@@ -75,7 +75,7 @@ llm = AzureChatOpenAI(
 )
 ```
 
-2.DeepSeek
+2. DeepSeek
 
 To balance time and cost, I also used the DeepSeek API. According to the official website, the deepseek-chat model has been fully upgraded to DeepSeek-V3.
 
@@ -189,7 +189,7 @@ def clean_answer(str,id,text):
 
 ##### ROUGE
 
-| Original Version | ROUGE-1 (Recall) | ROUGE-1 (Precision) | ROUGE-1 (F1) | ROUGE-2 (R) | ROUGE-2 (P) | ROUGE-2 (F) | ROUGE-L (R) | ROUGE-L (P) | ROUGE-L (F) |
+| Original Version | ROUGE-1 (Recall)  | ROUGE-1 (Precision) | ROUGE-1 (F1) | ROUGE-2 (R) | ROUGE-2 (P) | ROUGE-2 (F) | ROUGE-L (R) | ROUGE-L (P) | ROUGE-L (F) |
 |------------------|------------------|---------------------|--------------|-------------|-------------|-------------|-------------|-------------|-------------|
 | deepseek-chat    | 0.8761           | 0.8877              | 0.8689       | 0.8630      | 0.8564      | 0.8548      | 0.8699      | 0.8821      | 0.8624      |
 | glm-4-plus       | 0.8519           | 0.8747              | 0.8468       | 0.8424      | 0.8426      | 0.8350      | 0.8469      | 0.8677      | 0.8394      |
